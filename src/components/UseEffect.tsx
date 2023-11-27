@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { PlayerUseEffect } from "./PlayerUseEffect";
+import { UseCleanUp } from "./UseCleanUp";
 
 export const UseEffect = () => {
   const [name, setName] = useState("Jeff");
@@ -60,6 +61,7 @@ export const UseEffect = () => {
         Mudar primeiro nome e sobrenome
       </button>
       <PlayerUseEffect />
+      <UseCleanUp />
     </div>
   );
 };

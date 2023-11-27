@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
   src: string;
@@ -7,5 +7,16 @@ type Props = {
 
 export const VideoPlayer = ({ src, isPlaying }: Props) => {
   const videoTag = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // if (isPlaying) {
+    //   videoTag.current?.play();
+    // } else {
+    //   videoTag.current?.pause();
+    // }
+
+    isPlaying ? videoTag.current?.play() : videoTag.current?.pause();
+  });
+
   return <video ref={videoTag} src={src} loop playsInline></video>;
 };
