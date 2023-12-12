@@ -60,6 +60,23 @@ export const UseReducers = () => {
     console.log("ID", id);
   };
 
+  const handleEdit = (id: number) => {
+    const item = list.find((it) => it.id === id);
+
+    if (!item) return false;
+    const newText = window.prompt("Editar tarefa", item.text);
+
+    if (!newText || newText?.trim() === "") return false;
+
+    dispatch({ type: "editText", payload: { id, newText } });
+  };
+
+  const handleRemove = (id: number) => {
+    if (!window.confirm("Tem certeza que deseja excluir?")) return false;
+
+    dispatch({ type: "remove", payload: { id } });
+  };
+
   return (
     <div className="container mx-auto ">
       <h1 className="text-center text-4xl my-4">Lista de Tarefas</h1>
@@ -85,8 +102,18 @@ export const UseReducers = () => {
               onClick={() => handleDoneCheckbox(item.id)}
             />
             <p className="flex-1 text-lg">{item.text}</p>
-            <button className="mx-4 hover:text-gray-500">Editar</button>
-            <button className="mx-4 hover:text-gray-500">Excluir</button>{" "}
+            <button
+              className="mx-4 hover:text-gray-500"
+              onClick={() => handleEdit(item.id)}
+            >
+              Editar
+            </button>
+            <button
+              className="mx-4 hover:text-gray-500"
+              onClick={() => handleRemove(item.id)}
+            >
+              Excluir
+            </button>{" "}
           </li>
         ))}
       </ul>
