@@ -2,7 +2,16 @@ import { useContext } from "react";
 import { CountContext } from "./contexts/CounterContext";
 
 export const OnlineUsers = () => {
-  const count = useContext(CountContext);
+  const countCtx = useContext(CountContext);
 
-  return <p>Online: {count}</p>;
+  const handleBanAll = () => {
+    countCtx?.setOnlineCount(0);
+  };
+
+  return (
+    <>
+      <p>Online: {countCtx?.onlineCount}</p>
+      <button onClick={handleBanAll}>Banir todo mundo</button>
+    </>
+  );
 };
